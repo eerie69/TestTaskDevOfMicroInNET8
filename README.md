@@ -286,9 +286,14 @@ public async Task<Order> CreateOrderAsync(string userId, CreateOrderRequestDto o
 Был создать класс ProductHttpClientService.
 
 appsettings.json:
+```json
+
  "Services": {
    "ProductServiceUrl": "https://localhost:7180/server"
  }
+
+```
+
 Program.cs:
 ```C#
 
