@@ -285,6 +285,21 @@ public async Task<Order> CreateOrderAsync(string userId, CreateOrderRequestDto o
 где каждый сервис изолирован и общение идёт через API.
 Был создать класс ProductHttpClientService.
 
+appsettings.json:
+ "Services": {
+   "ProductServiceUrl": "https://localhost:7180/server"
+ }
+Program.cs:
+```C#
+
+builder.Services.AddHttpClient("ProductService", (sp, client) =>
+{
+    var config = sp.GetRequiredService<IConfiguration>();
+    var baseUrl = config.GetValue<string>("Services:ProductServiceUrl");
+    client.BaseAddress = new Uri(baseUrl);
+});
+
+```
 
 Проверить наличие продукта через Product Service:
 ```C#
